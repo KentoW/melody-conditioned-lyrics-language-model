@@ -5,18 +5,18 @@ Python scripts to train "melody conditioned lyrics language model" [[1]](#1) and
 ### 1. Python and Python Packages
 - `Python3.6`  
 -  Machine Learning Packages
-    - torch==1.1.0 (if you use GPU, install CUDA enviroments)
-    - numpy==1.16.4
+    - `torch==1.1.0` (if you use GPU, install CUDA enviroments)
+    - `numpy==1.16.4`
 -  Character Codes Packages
-    - jaconv
-    - jctconv
-    - romkan
+    - `jaconv`
+    - `jctconv`
+    - `romkan`
 -  MIDI Packages
-    - mido
+    - `mido`
 -  Morpheme Parser Packages
-    - CaboCha (manual install)
-    - mecab-python3
-    - nltk
+    - `CaboCha` (manual install from this [link](https://taku910.github.io/cabocha/))
+    - `mecab-python3`
+    - `nltk` (you use WordNetLemmatizer)
 
 ### 2. Install Japanese parser
 - You install... 
