@@ -1,0 +1,1 @@
+{"feature_idx_path": "./checkpoint/model.feature.json", "vocab_idx_path": "./checkpoint/model.vocab.json", "word_dim": 512, "melody_dim": 256, "syllable_size": 17, "feature_size": 323, "window": 10, "args_word_size": 20000}
