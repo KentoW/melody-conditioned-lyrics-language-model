@@ -224,7 +224,7 @@ def generate(notes, param, checkpoint, seed=0, window=2, temperature=1.0):
                 temp_stack = set()
                 for s in range(100*window):
                     new_index = sample(dist, temperature)
-                    if was_segment == True and new_index in (bob, bol):     # 直前単語と生成単語がセグメントの時は無視する
+                    if was_segment == True and new_index in (bob, bol):
                         continue
                     if new_index == bol:
                         generate_bol = True
@@ -384,7 +384,7 @@ def save_lyrics(generated, notes, output_dir):
             if i == 0 or i == last_note_idx:
                 song["lyrics"].append([note[0], note[1], note[2], "<None>", "<None>", "<None>", "<None>"])
             else:
-                if temp_lyrics[i-1][-2] == temp_lyrics[i+1][-2]:    #単語の途中で休符がある場合
+                if temp_lyrics[i-1][-2] == temp_lyrics[i+1][-2]:
                     song["lyrics"].append(note[::] + ["<None>"] + temp_lyrics[i+1][-3::])
                 else:
                     song["lyrics"].append([note[0], note[1], note[2], "<None>", "<None>", "<None>", "<None>"])
