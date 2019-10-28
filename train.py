@@ -130,7 +130,7 @@ def main(args):
         start = time.time()
         """ Batches """
         hidden = model.init_hidden(args.batch_size)
-        for i, (syllable, lyrics, melody, lengths) in enumerate(train_data_loader):
+        for i, (syllable, lyrics, melody, lengths) in enumerate(data_loader):
             data_time.update(time.time()*1000 - start*1000)
             """ Move to GPU """
             syllable = syllable.to(device)
@@ -186,7 +186,7 @@ def main(args):
         start = time.time()
         """ Batches """
         hidden = model.init_hidden(args.batch_size)
-        for i, (syllable, lyrics, melody, lengths) in enumerate(train_data_loader):
+        for i, (syllable, lyrics, melody, lengths) in enumerate(data_loader):
             data_time.update(time.time()*1000 - start*1000)
             """ Move to GPU """
             syllable = syllable.to(device)
