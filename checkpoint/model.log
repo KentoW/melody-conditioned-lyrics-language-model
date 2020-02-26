@@ -6,9 +6,9 @@
         word_dim:  512
       melody_dim:  256
             seed:  0
-     num_workers:  10
+     num_workers:  4
       num_epochs:  5
-      batch_size:  32
+      batch_size:  1
               lr:  0.001
     log_interval:  10
          verbose:  1
@@ -18,28 +18,28 @@
 feature size:  323
 syllable size:  17
 ------ Training -----
-| Training Epoch:   1/  5       0/     1 | lr:0.00100 |  255.52 ms/batch | 229.64 ms/data_load | Loss(Syllable) 2.83162 | Loss(Lyrics) 4.52517 |
+| Training Epoch:   1/  5       0/     1 | lr:0.00100 |  127.71 ms/batch | 97.88 ms/data_load | Loss(Syllable) 2.83162 | Loss(Lyrics) 4.52517 |
 
-| Validation Epoch:   1/  5       0/     1 | lr:0.00100 |  210.35 ms/batch | 200.90 ms/data_load | Loss(Syllable) 2.38391 | Loss(Lyrics) 4.22287 |
-
------------
-| Training Epoch:   2/  5       0/     1 | lr:0.00100 |  222.64 ms/batch | 206.80 ms/data_load | Loss(Syllable) 2.38391 | Loss(Lyrics) 4.22287 |
-
-| Validation Epoch:   2/  5       0/     1 | lr:0.00100 |  208.34 ms/batch | 202.12 ms/data_load | Loss(Syllable) 1.90885 | Loss(Lyrics) 3.88818 |
+| Validation Epoch:   1/  5       0/     1 | lr:0.00100 |  102.89 ms/batch | 96.51 ms/data_load | Loss(Syllable) 2.67436 | Loss(Lyrics) 4.50673 |
 
 -----------
-| Training Epoch:   3/  5       0/     1 | lr:0.00100 |  218.39 ms/batch | 205.98 ms/data_load | Loss(Syllable) 1.90885 | Loss(Lyrics) 3.88818 |
+| Training Epoch:   2/  5       0/     1 | lr:0.00100 |  104.50 ms/batch | 88.86 ms/data_load | Loss(Syllable) 2.38316 | Loss(Lyrics) 4.22227 |
 
-| Validation Epoch:   3/  5       0/     1 | lr:0.00100 |  207.50 ms/batch | 201.18 ms/data_load | Loss(Syllable) 1.49921 | Loss(Lyrics) 3.47219 |
-
------------
-| Training Epoch:   4/  5       0/     1 | lr:0.00100 |  216.51 ms/batch | 204.23 ms/data_load | Loss(Syllable) 1.49921 | Loss(Lyrics) 3.47219 |
-
-| Validation Epoch:   4/  5       0/     1 | lr:0.00100 |  217.37 ms/batch | 211.11 ms/data_load | Loss(Syllable) 1.25554 | Loss(Lyrics) 2.99082 |
+| Validation Epoch:   2/  5       0/     1 | lr:0.00100 |  101.17 ms/batch | 94.86 ms/data_load | Loss(Syllable) 2.48576 | Loss(Lyrics) 4.51165 |
 
 -----------
-| Training Epoch:   5/  5       0/     1 | lr:0.00100 |  222.57 ms/batch | 209.83 ms/data_load | Loss(Syllable) 1.25554 | Loss(Lyrics) 2.99082 |
+| Training Epoch:   3/  5       0/     1 | lr:0.00100 |  110.83 ms/batch | 98.53 ms/data_load | Loss(Syllable) 1.90732 | Loss(Lyrics) 3.88697 |
 
-| Validation Epoch:   5/  5       0/     1 | lr:0.00100 |  209.25 ms/batch | 202.96 ms/data_load | Loss(Syllable) 1.00695 | Loss(Lyrics) 2.48919 |
+| Validation Epoch:   3/  5       0/     1 | lr:0.00100 |   98.79 ms/batch | 93.35 ms/data_load | Loss(Syllable) 2.21724 | Loss(Lyrics) 4.53301 |
+
+-----------
+| Training Epoch:   4/  5       0/     1 | lr:0.00100 |  107.68 ms/batch | 94.95 ms/data_load | Loss(Syllable) 1.49882 | Loss(Lyrics) 3.47030 |
+
+| Validation Epoch:   4/  5       0/     1 | lr:0.00100 |  100.47 ms/batch | 94.91 ms/data_load | Loss(Syllable) 2.04425 | Loss(Lyrics) 4.60165 |
+
+-----------
+| Training Epoch:   5/  5       0/     1 | lr:0.00100 |  110.46 ms/batch | 98.50 ms/data_load | Loss(Syllable) 1.25175 | Loss(Lyrics) 2.98820 |
+
+| Validation Epoch:   5/  5       0/     1 | lr:0.00100 |  101.75 ms/batch | 95.60 ms/data_load | Loss(Syllable) 1.93898 | Loss(Lyrics) 4.63031 |
 
 -----------

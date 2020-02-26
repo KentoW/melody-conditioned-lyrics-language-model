@@ -25,7 +25,7 @@ class MCLLM(nn.Module):
         self.bn_lyrics = nn.BatchNorm1d(word_size)
         self.bn_syllable = nn.BatchNorm1d(syllable_size)
 
-    def forward(self, lyrics, melody, lengths):
+    def forward(self, lyrics, melody, lengths, hidden):
         lengths = lengths-1
         local_batch_size = lyrics.shape[0]
         """ word embedding """
@@ -36,7 +36,7 @@ class MCLLM(nn.Module):
         input_vec = torch.cat((word_emb, melody_vec), dim=2)
         input_vec = pack_padded_sequence(input_vec, lengths, batch_first=True)
         """ RNN """
-        output, hidden = self.rnn(input_vec)
+        output, hidden = self.rnn(input_vec, hidden)
         """ output """
         lyrics_output = self.fc_out_lyrics(output[0])
         syllable_output = self.fc_out_syllable(output[0])

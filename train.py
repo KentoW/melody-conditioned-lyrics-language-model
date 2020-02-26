@@ -132,6 +132,9 @@ def main(args):
         hidden = model.init_hidden(args.batch_size)
         for i, (syllable, lyrics, melody, lengths) in enumerate(data_loader):
             data_time.update(time.time()*1000 - start*1000)
+            local_bs = lyrics.size(0)
+            if local_bs != args.batch_size:
+                continue
             """ Move to GPU """
             syllable = syllable.to(device)
             lyrics = lyrics.to(device)
@@ -146,7 +149,7 @@ def main(args):
             hidden = repackage_hidden(hidden)
 
             """ forward """
-            syllable_output, lyrics_output, hidden = model(lyrics[:, :-1], melody, lengths)
+            syllable_output, lyrics_output, hidden = model(lyrics[:, :-1], melody, lengths, hidden)
             target_syllable = pack_padded_sequence(syllable[:, 1:], lengths-1, batch_first=True)[0]
             target_lyrics = pack_padded_sequence(lyrics[:, 1:], lengths-1, batch_first=True)[0]
             loss_syllable = criterion(syllable_output, target_syllable)
@@ -188,6 +191,9 @@ def main(args):
         hidden = model.init_hidden(args.batch_size)
         for i, (syllable, lyrics, melody, lengths) in enumerate(data_loader):
             data_time.update(time.time()*1000 - start*1000)
+            local_bs = lyrics.size(0)
+            if local_bs != args.batch_size:
+                continue
             """ Move to GPU """
             syllable = syllable.to(device)
             lyrics = lyrics.to(device)
@@ -199,7 +205,7 @@ def main(args):
             """ detach """
             hidden = repackage_hidden(hidden)
             """ forward """
-            syllable_output, lyrics_output, hidden = model(lyrics[:, :-1], melody, lengths)
+            syllable_output, lyrics_output, hidden = model(lyrics[:, :-1], melody, lengths, hidden)
             target_syllable = pack_padded_sequence(syllable[:, 1:], lengths-1, batch_first=True)[0]
             target_lyrics = pack_padded_sequence(lyrics[:, 1:], lengths-1, batch_first=True)[0]
             loss_syllable = criterion(syllable_output, target_syllable)
@@ -261,7 +267,7 @@ if __name__ == "__main__":
     parser.add_argument("-seed", "--seed", dest="seed", default=0, type=int, help="random seed")
     parser.add_argument("-num_workers", "--num_workers", dest="num_workers", default=4, type=int, help="number of CPU")
     parser.add_argument("-num_epochs", "--num_epochs", dest="num_epochs", default=5, type=int, help="Epochs")
-    parser.add_argument("-batch_size", "--batch_size", dest="batch_size", default=32, type=int, help="Batch size")
+    parser.add_argument("-batch_size", "--batch_size", dest="batch_size", default=1, type=int, help="Batch size")
     parser.add_argument("-lr", "--lr", dest="lr", default=0.001, type=float, help="learning rate")
     parser.add_argument("-log_interval", "--log_interval", dest="log_interval", default=10, type=int, help="Report interval")
 
