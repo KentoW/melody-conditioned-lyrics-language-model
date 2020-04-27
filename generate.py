@@ -22,13 +22,6 @@ logging.disable(logging.FATAL)
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
-def repackage_hidden(h):
-    """Wraps hidden states in new Tensors, to detach them from their history."""
-    if isinstance(h, torch.Tensor):
-        return h.detach()
-    else:
-        return tuple(repackage_hidden(v) for v in h)
-
 
 def sample(preds, temperature=1.0):
     preds = np.asarray(preds).astype('float64')
@@ -153,8 +146,7 @@ def generate(notes, param, checkpoint, seed=0, window=2, temperature=1.0):
             x_midi = torch.Tensor(x_midi).to(device)
 
             # 3. Generate word
-            hidden = repackage_hidden(hidden)
-            syllable_output, lyrics_output, hidden = model(x_word, x_midi, lengths+1)
+            syllable_output, lyrics_output, hidden = model(x_word, x_midi, lengths+1, hidden)
             dist = F.softmax(lyrics_output, dim=1).cpu().numpy()[0]
             dist[word2idx["<unk>"]] = 0.0
             stack = set()
@@ -202,8 +194,8 @@ def generate(notes, param, checkpoint, seed=0, window=2, temperature=1.0):
             lengths = torch.Tensor([t+1]*window).long().to(device)
 
             # 3. Generate word
-            hidden = repackage_hidden(hidden)
-            syllable_output, lyrics_output, hidden = model(x_word, x_midi, lengths+1)
+            hidden = model.init_hidden(20)
+            syllable_output, lyrics_output, hidden = model(x_word, x_midi, lengths+1, hidden)
             lyrics_output = lyrics_output[-window::]            # extract last output
             dists = F.softmax(lyrics_output, dim=1).cpu().numpy()
             stack = set()
